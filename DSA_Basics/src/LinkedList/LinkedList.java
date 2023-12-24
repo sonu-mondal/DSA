@@ -55,6 +55,48 @@ public class LinkedList {
 			}
 	}
 	
+	//Length of linked list
+		public int length() {
+			int countLength=0;
+			if(this.head==null) return countLength;
+			Node temp=this.head;
+			while(temp!=null) {
+				countLength++;
+				temp=temp.getNext();
+			}
+			return countLength;			
+		}
+		
+		//Search element is LL
+		public String searchElement(String key) {
+			Node temp=this.head;
+			while(temp!=null) {
+				if(temp.getData().equals(key)) {
+					return "present";
+				}
+				else {
+					temp=temp.getNext();
+				}
+			}
+			return "not present";
+		}
+		
+		//searcg/finding an element in a LL
+		public Node find(String key) {
+			Node temp=this.head;
+			while(temp!=null) {
+				if(temp.getData().equals(key)) {
+					return temp;
+				}
+				else {
+					temp=temp.getNext();			
+				}
+			}
+			return null;
+		}
+		
+	
+	
 	
 	public static void main(String args[]) {
 		LinkedList list=new LinkedList();
@@ -70,10 +112,18 @@ public class LinkedList {
 		list.display();
 		
 		System.out.println();
+		System.out.println("Length of linked list is : "+list.length());
+		
+		System.out.println();
 		System.out.println("Adding the data to the beginning of the linked list");
 		list.addAtBeginning("Lotus");
 		list.addAtBeginning("Rose");
 		list.display();
+		
+		System.out.println();
+		System.out.println("The key is : "+list.searchElement("Chennai"));
+		
+		
 	}
 
 }
