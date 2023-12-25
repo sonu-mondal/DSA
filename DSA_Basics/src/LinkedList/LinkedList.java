@@ -2,7 +2,9 @@ package LinkedList;
 
 public class LinkedList {
 	private Node head;
-	private Node tail;
+	private Node tail;//advantage of taking tail is that when we need to add an element at the last of LL 
+	//then that we can do in the O(1) complexity i.e constant time , if tail is not there then we need
+	//to traverse to last element then need to insert so in that case TC is O(n)
 	
 	public Node getHead() {
 		return head;
@@ -20,8 +22,8 @@ public class LinkedList {
 	//adding element at end of linked list
 //	algo: create the node with the given data
 	//check list is empty or not if empty make the node as the head and tail node
-	//else make the link of the node refer to the node
-	//make the tail refer to the node
+	//else make the link/next of the tail refer to the node
+	//make the tail refer to the node or make the node as the tail node
 	public void addAtEnd(String data) {
 		Node node=new Node(data);
 		if(this.head==null) {
@@ -53,6 +55,7 @@ public class LinkedList {
 			System.out.print(temp.getData()+" -> ");
 			temp=temp.getNext();
 			}
+		System.out.println("null");
 	}
 	
 	//Length of linked list
@@ -81,7 +84,7 @@ public class LinkedList {
 			return "not present";
 		}
 		
-		//searcg/finding an element in a LL
+		//search/finding an element in a LL
 		public Node find(String key) {
 			Node temp=this.head;
 			while(temp!=null) {
@@ -94,6 +97,107 @@ public class LinkedList {
 			}
 			return null;
 		}
+		
+		//inserting an element in LL
+		//create node with the given data
+		//check if LL is empty or not if empty make the node as the head and tail node
+		//else point the earlier nodeBefores next element as the next element of the node.
+		//and set the nodeBefores next as the node
+		//if nodeBefore is the tail then make the node as the tail
+		// if node not found print message
+		
+		public void insert(String data, String dataBefore) {
+			Node node=new Node(data);
+			if(this.head==null) {
+				this.head=this.tail=node;
+			}
+			else {
+				Node nodeBefore=this.find(dataBefore);
+				if(nodeBefore!=null) {
+					node.setNext(nodeBefore.getNext());
+					nodeBefore.setNext(node);
+					if(nodeBefore==this.tail) {
+						this.tail=node;
+					}
+				}
+				else {
+					System.out.println("Node not found");
+				}
+				
+			}
+		}
+		
+		//or another way to insert element at a paticular index
+		public void insert1(String data, int index) {
+			Node node=new Node(data);
+			if(index==0) {
+				addAtBeginning(data);
+				
+			}
+			else if(index==length()) {
+				addAtEnd(data);
+			}
+			else {
+							
+			Node temp=this.head;
+			for(int i=1;i<index;i++) {
+				temp=temp.getNext();
+			}
+			node.setNext(temp.getNext());
+			temp.setNext(node);
+			}
+			
+		}
+		
+		//Delete first element of LL
+		public String deleteFirst() {
+			if(this.head==null) {
+				this.tail=null;
+			}
+			String value=this.head.getData();
+			head=head.getNext();
+			return value;
+		}
+		
+		//Delete last element of LL
+		public String deleteLast() {
+			if(this.head==null) {
+				this.tail=null;
+			}
+			String temp=this.tail.getData();
+			Node previousElement=this.head;
+			while(previousElement.getNext().getNext()!=null) {
+				previousElement=previousElement.getNext();
+			}
+			previousElement.setNext(null);
+			return temp;
+		}
+		
+		//Delete element at particular index
+		public String deleteAtIndex(int index) {
+			String element=head.getData();
+			Node temp=this.head;
+			Node next=null;
+			Node previous=null;
+			if(index==0) {
+				deleteFirst();
+			}
+			else if(index==length()) {
+				deleteLast();
+			}
+			else {
+				for(int i=1;i<index;i++) {
+					temp=temp.getNext();
+					
+				}
+			}
+			previous=temp;
+			temp=temp.getNext();
+			next=temp.getNext();
+			previous.setNext(next);
+			return temp.getData();
+		}
+		
 		
 	
 	
@@ -122,6 +226,46 @@ public class LinkedList {
 		
 		System.out.println();
 		System.out.println("The key is : "+list.searchElement("Chennai"));
+		
+		System.out.println();
+		System.out.println("Inserting element in LL");
+		list.insert("Sonu", "Delhi");
+		list.display();
+		
+		System.out.println();
+		System.out.println("Inserting element in LL when index is given");
+		list.insert1("indexLast", list.length());
+		list.insert1("indexFirst", 0);
+		list.insert1("indexMid", 5);
+		list.display();
+		
+		System.out.println();
+		System.out.println("Deleteing the first element");
+		System.out.println("first deleted element is : "+ list.deleteFirst());
+		System.out.println("List after deleting first element");
+		list.display();
+		
+		System.out.println();
+		System.out.println("Deleteing the last element");
+		System.out.println("Last deleted element is : "+ list.deleteLast());
+		System.out.println("List after deleting Last element");
+		list.display();
+//		list.deleteLast();
+//		list.display();
+		
+		System.out.println();
+		System.out.println("Deleteing the particular index element");
+		System.out.println("Element deleted is : "+ list.deleteAtIndex(5));
+		System.out.println("List after deleting element");
+		list.display();
+//		list.deleteAtIndex(0);
+//		list.display();
+//		list.deleteAtIndex(list.length());
+//		list.display();
+//		list.deleteAtIndex(2);
+//		list.display();
+//		
+		
 		
 		
 	}

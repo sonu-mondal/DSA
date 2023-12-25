@@ -30,10 +30,42 @@ public class LinkedList {
 			if(temp.data==key) {
 				return 1;
 			}
+			else {
 			temp=temp.next;
+			}
 		}
 		return 0;
 	}
+	
+	//Display LL data
+	public static void Display(Node head){
+		while(head!=null) {
+			System.out.print(head.data+" -> ");
+			head=head.next;
+		}
+	
+	}
+	
+	//Delete the head of the LL
+	public static Node deleteHead(Node head) {
+		if(head==null) return head;
+		head=head.next;
+		return head;
+	}
+	//Delete the tail element of LL
+	public static Node deleteTail(Node head) {
+		Node temp=head;
+		if(head==null || head.next==null) return null;
+		while(head.next.next!=null){
+			temp=temp.next;
+			if(temp.next.next==null) {
+				temp.next=null;
+			}
+			
+		}
+		return head;
+	}
+	
 	
 	
 
@@ -61,11 +93,28 @@ public class LinkedList {
 //		Node head1=array2LL(arr2);
 //		System.out.println("length of a linked list : "+lengthOfLL(head1));
 		
-		//search element in a linked list
+		//Deleting element in a LL
 		System.out.println();
 		int[] arr3= {23,3,45,54,67,78,9};
-		Node head3=new Node(arr3[0]);
-		System.out.println(searchElement(head3, 78));
+		Node head=array2LL(arr3);
+		head=deleteHead(head);
+		Display(head);
+		//another head deletion
+		Node head2=deleteHead(head);
+		System.out.println();
+		Display(head2);
+		
+		//Deleting the tail of the LL
+		System.out.println();
+		System.out.println("Tail deletion");
+		int[] arr4= {12,34,1,20,50,45,89};
+		Node head1=array2LL(arr4);
+//		System.out.println("Before tail deletion");
+//		Display(head1);
+		head1=deleteTail(head1);
+		System.out.println("After tail deletion");
+		Display(head1);
+		
 		
 		
 
