@@ -149,6 +149,15 @@ public class LinkedList {
 			
 		}
 		
+		//return the reference of a node if we provide the index position
+		public Node get(int index) {
+			Node node=head;
+			for(int i=0;i<index;i++) {
+				node=node.getNext();
+			}
+			return node;
+		}
+		
 		//Delete first element of LL
 		public String deleteFirst() {
 			if(this.head==null) {
@@ -164,13 +173,29 @@ public class LinkedList {
 			if(this.head==null) {
 				this.tail=null;
 			}
+			if(length()<=1) {
+				return deleteFirst();
+			}
 			String temp=this.tail.getData();
 			Node previousElement=this.head;
 			while(previousElement.getNext().getNext()!=null) {
 				previousElement=previousElement.getNext();
 			}
 			previousElement.setNext(null);
+			tail=previousElement;
 			return temp;
+		}
+		
+		//or 2nd method to delete last element of LL
+		public String deleteLast1() {
+			if(length()<=1) {
+				return deleteFirst();
+			}
+			Node secondLast=get(length()-2);
+			String value=tail.getData();
+			this.tail=secondLast;
+			tail.setNext(null);
+			return value;
 		}
 		
 		//Delete element at particular index
@@ -188,7 +213,6 @@ public class LinkedList {
 			else {
 				for(int i=1;i<index;i++) {
 					temp=temp.getNext();
-					
 				}
 			}
 			previous=temp;
@@ -196,6 +220,22 @@ public class LinkedList {
 			next=temp.getNext();
 			previous.setNext(next);
 			return temp.getData();
+		}
+		
+		//or 2nd method to delete at particular index element 
+		public String deleteAtIndex1(int index) {
+			if(index==0) {
+				return deleteFirst();
+			}
+			if(index==length()) {
+				return deleteLast();
+			}
+					
+			Node previous=get(index-1);
+			String value=previous.getNext().getData();
+			previous.setNext(previous.getNext().getNext());
+			return value;
+			
 		}
 		
 		
@@ -253,6 +293,13 @@ public class LinkedList {
 //		list.deleteLast();
 //		list.display();
 		
+		//2nd method to delete last element of LL
+		System.out.println();
+		System.out.println("- 2nd method- Deleteing the last element");
+		System.out.println("Last deleted element is : "+ list.deleteLast1());
+		System.out.println("List after deleting Last element");
+		list.display();
+		
 		System.out.println();
 		System.out.println("Deleteing the particular index element");
 		System.out.println("Element deleted is : "+ list.deleteAtIndex(5));
@@ -265,7 +312,12 @@ public class LinkedList {
 //		list.deleteAtIndex(2);
 //		list.display();
 //		
-		
+		//2nd method
+		System.out.println();
+		System.out.println("-2nd method- Deleteing the particular index element");
+		System.out.println("Element deleted is : "+ list.deleteAtIndex1(5));
+		System.out.println("List after deleting element");
+		list.display();
 		
 		
 	}
