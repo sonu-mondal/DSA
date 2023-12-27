@@ -82,7 +82,7 @@ public class DoublyLinkedList {
 		return count;
 	}
 	
-	//insert at a particulat index
+	//insert at a particular index
 	public void insert(int data, int index) {
 		if(index==0) {
 			addAtBegining(data);
@@ -90,6 +90,11 @@ public class DoublyLinkedList {
 		}
 		if(index==length()) {
 			addAtEnd(data);
+			return;
+		}
+		if(index>length()) {
+			System.out.println();
+			System.out.println("Node does not exist");
 			return;
 		}
 		Node node=new Node(data);
@@ -120,21 +125,21 @@ public class DoublyLinkedList {
 		list.addAtBegining(100);
 		list.addAtBegining(250);
 		list.display();
-		
-		//
-		
-		
+				
+		//displaying element
 		System.out.println();
 		System.out.println("dispalying in reverse order");
 		list.displayReverse();
 		
 		
-		//inserting at element particular index position
+		//inserting an element at particular index position
 		System.out.println();
 		System.out.println("List before inserting element");
 		list.display();
 		list.insert(1001, 4);
 		list.insert(1111, 0);
+		list.insert(2023, list.length());
+		list.insert(55, 100);//exception case
 		System.out.println();
 		System.out.println("List after inserting element");
 		list.display();
