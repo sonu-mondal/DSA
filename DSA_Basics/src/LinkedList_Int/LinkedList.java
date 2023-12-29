@@ -1,4 +1,6 @@
-package LinkedList;
+package LinkedList_Int;
+
+import LinkedList_Int.*;
 
 public class LinkedList {
 	private Node head;
@@ -24,7 +26,7 @@ public class LinkedList {
 	//check list is empty or not if empty make the node as the head and tail node
 	//else make the link/next of the tail refer to the node
 	//make the tail refer to the node or make the node as the tail node
-	public void addAtEnd(String data) {
+	public void addAtEnd(int data) {
 		Node node=new Node(data);
 		if(this.head==null) {
 			this.head=this.tail=node;
@@ -38,7 +40,7 @@ public class LinkedList {
 	//check list is empty or not if empty make the node as the head and tail node
 	//else add the node to the beginning of the head
 	//make the node as the head node
-	public void addAtBeginning(String data) {
+	public void addAtBeginning(int data) {
 		Node node=new Node(data);
 		if(this.head==null) {
 			this.head=this.tail=node;
@@ -71,10 +73,10 @@ public class LinkedList {
 		}
 		
 		//Search element is LL
-		public String searchElement(String key) {
+		public String searchElement(int key) {
 			Node temp=this.head;
 			while(temp!=null) {
-				if(temp.getData().equals(key)) {
+				if(temp.getData()==(key)) {
 					return "present";
 				}
 				else {
@@ -85,10 +87,10 @@ public class LinkedList {
 		}
 		
 		//search/finding an element in a LL
-		public Node find(String key) {
+		public Node find(int key) {
 			Node temp=this.head;
 			while(temp!=null) {
-				if(temp.getData().equals(key)) {
+				if(temp.getData()==(key)) {
 					return temp;
 				}
 				else {
@@ -106,7 +108,7 @@ public class LinkedList {
 		//if nodeBefore is the tail then make the node as the tail
 		// if node not found print message
 		
-		public void insert(String data, String dataBefore) {
+		public void insert(int data, int dataBefore) {
 			Node node=new Node(data);
 			if(this.head==null) {
 				this.head=this.tail=node;
@@ -128,7 +130,7 @@ public class LinkedList {
 		}
 		
 		//or another way to insert element at a paticular index
-		public void insert1(String data, int index) {
+		public void insert1(int data, int index) {
 			Node node=new Node(data);
 			if(index==0) {
 				addAtBeginning(data);
@@ -159,24 +161,24 @@ public class LinkedList {
 		}
 		
 		//Delete first element of LL
-		public String deleteFirst() {
+		public int deleteFirst() {
 			if(this.head==null) {
 				this.tail=null;
 			}
-			String value=this.head.getData();
+			int value=this.head.getData();
 			head=head.getNext();
 			return value;
 		}
 		
 		//Delete last element of LL
-		public String deleteLast() {
+		public int deleteLast() {
 			if(this.head==null) {
 				this.tail=null;
 			}
 			if(length()<=1) {
 				return deleteFirst();
 			}
-			String temp=this.tail.getData();
+			int temp=this.tail.getData();
 			Node previousElement=this.head;
 			while(previousElement.getNext().getNext()!=null) {
 				previousElement=previousElement.getNext();
@@ -187,20 +189,20 @@ public class LinkedList {
 		}
 		
 		//or 2nd method to delete last element of LL
-		public String deleteLast1() {
+		public int deleteLast1() {
 			if(length()<=1) {
 				return deleteFirst();
 			}
 			Node secondLast=get(length()-2);
-			String value=tail.getData();
+			int value=tail.getData();
 			this.tail=secondLast;
 			tail.setNext(null);
 			return value;
 		}
 		
 		//Delete element at particular index
-		public String deleteAtIndex(int index) {
-			String element=head.getData();
+		public int deleteAtIndex(int index) {
+			int element=head.getData();
 			Node temp=this.head;
 			Node next=null;
 			Node previous=null;
@@ -223,7 +225,7 @@ public class LinkedList {
 		}
 		
 		//or 2nd method to delete at particular index element 
-		public String deleteAtIndex1(int index) {
+		public int deleteAtIndex1(int index) {
 			if(index==0) {
 				return deleteFirst();
 			}
@@ -232,20 +234,20 @@ public class LinkedList {
 			}
 					
 			Node previous=get(index-1);
-			String value=previous.getNext().getData();
+			int value=previous.getNext().getData();
 			previous.setNext(previous.getNext().getNext());
 			return value;
 			
 		}
 		
 		//inserting element using recusrion
-		public void insertUsingRecursion(String data, int index) {
+		public void insertUsingRecursion(int data, int index) {
 			//head=... because we need to update the head if ant element is inserted at 0th position 
 			//or else the head remain as it was
 			head=insertUsingRecursion(data, index, this.head);
 		}
 		
-		private Node insertUsingRecursion(String data, int index, Node node) {
+		private Node insertUsingRecursion(int data, int index, Node node) {
 			if(index==0) {//index=0 means if we moved to position where we need to insert the data
 				//otherwise we will move to next index and decrement the index value till it become 0
 				Node newNode=new Node(data, node);
@@ -259,7 +261,7 @@ public class LinkedList {
 		public void removeDuplicates() {
 			Node node=this.head;
 			while(node.getNext()!=null) {
-				if(node.getData().equals(node.getNext().getData())) {
+				if(node.getData()==(node.getNext().getData())) {
 					node.setNext(node.getNext().getNext());
 				}
 				else {
@@ -271,17 +273,15 @@ public class LinkedList {
 				}
 			}
 		}
-	
-	
-	
-	public static void main(String args[]) {
+
+	public static void main(String[] args) {
 		LinkedList list=new LinkedList();
-		list.addAtEnd("Kolkata");
-		list.addAtEnd("Mumbai");
-		list.addAtEnd("Delhi");
-		list.addAtEnd("Bangalore");
-		list.addAtEnd("Hyderabad");
-		list.addAtEnd("Chennai");
+		list.addAtEnd(1);
+		list.addAtEnd(3);
+		list.addAtEnd(34);
+		list.addAtEnd(8);
+		list.addAtEnd(6);
+		list.addAtEnd(90);
 		
 		System.out.println("Added the element to the linkedlist");
 		System.out.println("Displaying the linked list element");
@@ -292,23 +292,23 @@ public class LinkedList {
 		
 		System.out.println();
 		System.out.println("Adding the data to the beginning of the linked list");
-		list.addAtBeginning("Lotus");
-		list.addAtBeginning("Rose");
+		list.addAtBeginning(78);
+		list.addAtBeginning(5);
 		list.display();
 		
 		System.out.println();
-		System.out.println("The key is : "+list.searchElement("Chennai"));
+		System.out.println("The key is : "+list.searchElement(5));
 		
 		System.out.println();
 		System.out.println("Inserting element in LL");
-		list.insert("Sonu", "Delhi");
+		list.insert(17,8);
 		list.display();
 		
 		System.out.println();
 		System.out.println("Inserting element in LL when index is given");
-		list.insert1("indexLast", list.length());
-		list.insert1("indexFirst", 0);
-		list.insert1("indexMid", 5);
+		list.insert1(77, list.length());
+		list.insert1(777, 0);
+		list.insert1(7777, 5);
 		list.display();
 		
 		System.out.println();
@@ -355,20 +355,20 @@ public class LinkedList {
 		//Inserting using recursion
 		System.out.println();
 		System.out.println("Insert operation using recursion");
-		list.insertUsingRecursion("Lion", 0);
+		list.insertUsingRecursion(656, 0);
 		list.display();
 		
 		//Creating another list to perform remove duplicate operation
 		//given list is in sorted order
 		LinkedList list2=new LinkedList();
-		list2.addAtEnd("Apple");
-		list2.addAtEnd("Apple");
-		list2.addAtEnd("Banana");
-		list2.addAtEnd("Banana");
-		list2.addAtEnd("Mango");
-		list2.addAtEnd("Mango");
-		list2.addAtEnd("Mango");
-		list2.addAtEnd("Grapes");
+		list2.addAtEnd(22);
+		list2.addAtEnd(22);
+		list2.addAtEnd(33);
+		list2.addAtEnd(33);
+		list2.addAtEnd(44);
+		list2.addAtEnd(44);
+		list2.addAtEnd(44);
+		list2.addAtEnd(55);
 		
 		
 		System.out.println();
@@ -378,23 +378,7 @@ public class LinkedList {
 		list2.removeDuplicates();
 		list2.display();
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 
 }
