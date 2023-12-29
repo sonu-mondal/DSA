@@ -238,6 +238,20 @@ public class LinkedList {
 			
 		}
 		
+		//inserting element using recusrion
+		public void insertUsingRecursion(String data, int index) {
+			head=insertUsingRecursion(data, index, this.head);
+		}
+		
+		private Node insertUsingRecursion(String data, int index, Node node) {
+			if(index==0) {//index=0 means if we are inserting at 0th index then the nodes next will point to head and that node will bwcome the head
+				Node newNode=new Node(data, node);
+				return newNode;				
+			}
+			node.setNext(insertUsingRecursion(data, index-1, node.getNext()));
+			return node;
+		}
+		
 		
 	
 	
@@ -318,6 +332,29 @@ public class LinkedList {
 		System.out.println("Element deleted is : "+ list.deleteAtIndex1(5));
 		System.out.println("List after deleting element");
 		list.display();
+		
+		
+		//Inserting using recursion
+		System.out.println();
+		System.out.println("Insert operation using recursion");
+		list.insertUsingRecursion("Lion", 0);
+		list.display();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	}
