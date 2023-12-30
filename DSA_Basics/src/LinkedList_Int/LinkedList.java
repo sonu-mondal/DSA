@@ -273,110 +273,175 @@ public class LinkedList {
 				}
 			}
 		}
+		
+		//Merging two LL
+		public static LinkedList merge(LinkedList l1, LinkedList l2) {
+			Node f=l1.getHead();
+			Node s=l2.getHead();
+			
+			LinkedList list=new LinkedList();
+			LinkedList tail=list;
+			
+			while(f!=null && s!=null) {
+				if(f.getData()<s.getData()) {
+					list.addAtEnd(f.getData());
+					f=f.getNext();
+				}
+				else {
+					list.addAtEnd(s.getData());
+					s=s.getNext();
+				}				
+			}
+			while(f!=null) {
+				list.addAtEnd(f.getData());
+				f=f.getNext();
+			}
+			while(s!=null) {
+				list.addAtEnd(s.getData());
+				s=s.getNext();
+			}
+			
+			return list;
+		}
 
 	public static void main(String[] args) {
-		LinkedList list=new LinkedList();
-		list.addAtEnd(1);
-		list.addAtEnd(3);
-		list.addAtEnd(34);
-		list.addAtEnd(8);
-		list.addAtEnd(6);
-		list.addAtEnd(90);
-		
-		System.out.println("Added the element to the linkedlist");
-		System.out.println("Displaying the linked list element");
-		list.display();
-		
-		System.out.println();
-		System.out.println("Length of linked list is : "+list.length());
-		
-		System.out.println();
-		System.out.println("Adding the data to the beginning of the linked list");
-		list.addAtBeginning(78);
-		list.addAtBeginning(5);
-		list.display();
-		
-		System.out.println();
-		System.out.println("The key is : "+list.searchElement(5));
-		
-		System.out.println();
-		System.out.println("Inserting element in LL");
-		list.insert(17,8);
-		list.display();
-		
-		System.out.println();
-		System.out.println("Inserting element in LL when index is given");
-		list.insert1(77, list.length());
-		list.insert1(777, 0);
-		list.insert1(7777, 5);
-		list.display();
-		
-		System.out.println();
-		System.out.println("Deleteing the first element");
-		System.out.println("first deleted element is : "+ list.deleteFirst());
-		System.out.println("List after deleting first element");
-		list.display();
-		
-		System.out.println();
-		System.out.println("Deleteing the last element");
-		System.out.println("Last deleted element is : "+ list.deleteLast());
-		System.out.println("List after deleting Last element");
-		list.display();
-//		list.deleteLast();
-//		list.display();
-		
-		//2nd method to delete last element of LL
-		System.out.println();
-		System.out.println("- 2nd method- Deleteing the last element");
-		System.out.println("Last deleted element is : "+ list.deleteLast1());
-		System.out.println("List after deleting Last element");
-		list.display();
-		
-		System.out.println();
-		System.out.println("Deleteing the particular index element");
-		System.out.println("Element deleted is : "+ list.deleteAtIndex(5));
-		System.out.println("List after deleting element");
-		list.display();
-//		list.deleteAtIndex(0);
-//		list.display();
-//		list.deleteAtIndex(list.length());
-//		list.display();
-//		list.deleteAtIndex(2);
+//		LinkedList list=new LinkedList();
+//		list.addAtEnd(1);
+//		list.addAtEnd(3);
+//		list.addAtEnd(34);
+//		list.addAtEnd(8);
+//		list.addAtEnd(6);
+//		list.addAtEnd(90);
+//		
+//		System.out.println("Added the element to the linkedlist");
+//		System.out.println("Displaying the linked list element");
 //		list.display();
 //		
-		//2nd method
+//		System.out.println();
+//		System.out.println("Length of linked list is : "+list.length());
+//		
+//		System.out.println();
+//		System.out.println("Adding the data to the beginning of the linked list");
+//		list.addAtBeginning(78);
+//		list.addAtBeginning(5);
+//		list.display();
+//		
+//		System.out.println();
+//		System.out.println("The key is : "+list.searchElement(5));
+//		
+//		System.out.println();
+//		System.out.println("Inserting element in LL");
+//		list.insert(17,8);
+//		list.display();
+//		
+//		System.out.println();
+//		System.out.println("Inserting element in LL when index is given");
+//		list.insert1(77, list.length());
+//		list.insert1(777, 0);
+//		list.insert1(7777, 5);
+//		list.display();
+//		
+//		System.out.println();
+//		System.out.println("Deleteing the first element");
+//		System.out.println("first deleted element is : "+ list.deleteFirst());
+//		System.out.println("List after deleting first element");
+//		list.display();
+//		
+//		System.out.println();
+//		System.out.println("Deleteing the last element");
+//		System.out.println("Last deleted element is : "+ list.deleteLast());
+//		System.out.println("List after deleting Last element");
+//		list.display();
+////		list.deleteLast();
+////		list.display();
+//		
+//		//2nd method to delete last element of LL
+//		System.out.println();
+//		System.out.println("- 2nd method- Deleteing the last element");
+//		System.out.println("Last deleted element is : "+ list.deleteLast1());
+//		System.out.println("List after deleting Last element");
+//		list.display();
+//		
+//		System.out.println();
+//		System.out.println("Deleteing the particular index element");
+//		System.out.println("Element deleted is : "+ list.deleteAtIndex(5));
+//		System.out.println("List after deleting element");
+//		list.display();
+////		list.deleteAtIndex(0);
+////		list.display();
+////		list.deleteAtIndex(list.length());
+////		list.display();
+////		list.deleteAtIndex(2);
+////		list.display();
+////		
+//		//2nd method
+//		System.out.println();
+//		System.out.println("-2nd method- Deleteing the particular index element");
+//		System.out.println("Element deleted is : "+ list.deleteAtIndex1(5));
+//		System.out.println("List after deleting element");
+//		list.display();
+//		
+//		
+//		//Inserting using recursion
+//		System.out.println();
+//		System.out.println("Insert operation using recursion");
+//		list.insertUsingRecursion(656, 0);
+//		list.display();
+//		
+//		//Creating another list to perform remove duplicate operation
+//		//given list is in sorted order
+//		LinkedList list2=new LinkedList();
+//		list2.addAtEnd(22);
+//		list2.addAtEnd(22);
+//		list2.addAtEnd(33);
+//		list2.addAtEnd(33);
+//		list2.addAtEnd(44);
+//		list2.addAtEnd(44);
+//		list2.addAtEnd(44);
+//		list2.addAtEnd(55);
+//		
+//		
+//		System.out.println();
+//		System.out.println("List before removing duplicates");
+//		list2.display();
+//		System.out.println("List after removing the duplicates");
+//		list2.removeDuplicates();
+//		list2.display();
+		
+		
+		//Merging two sorted linked list
+		LinkedList ll1=new LinkedList();
+		LinkedList ll2=new LinkedList();
+		ll1.addAtEnd(1);
+		ll1.addAtEnd(4);
+		ll1.addAtEnd(10);
+
+		ll2.addAtEnd(3);
+		ll2.addAtEnd(8);
+		ll2.addAtEnd(18);
+		ll2.addAtEnd(100);
+		
+		ll1.display();
 		System.out.println();
-		System.out.println("-2nd method- Deleteing the particular index element");
-		System.out.println("Element deleted is : "+ list.deleteAtIndex1(5));
-		System.out.println("List after deleting element");
-		list.display();
+		ll2.display();
+		System.out.println("List after merging");
+		LinkedList list1=merge(ll1, ll2);
+		list1.display();
 		
 		
-		//Inserting using recursion
-		System.out.println();
-		System.out.println("Insert operation using recursion");
-		list.insertUsingRecursion(656, 0);
-		list.display();
-		
-		//Creating another list to perform remove duplicate operation
-		//given list is in sorted order
-		LinkedList list2=new LinkedList();
-		list2.addAtEnd(22);
-		list2.addAtEnd(22);
-		list2.addAtEnd(33);
-		list2.addAtEnd(33);
-		list2.addAtEnd(44);
-		list2.addAtEnd(44);
-		list2.addAtEnd(44);
-		list2.addAtEnd(55);
 		
 		
-		System.out.println();
-		System.out.println("List before removing duplicates");
-		list2.display();
-		System.out.println("List after removing the duplicates");
-		list2.removeDuplicates();
-		list2.display();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 
 	}
