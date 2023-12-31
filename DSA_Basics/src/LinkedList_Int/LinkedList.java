@@ -303,6 +303,99 @@ public class LinkedList {
 			
 			return list;
 		}
+		
+		//Detect cycle in linked list
+		public static boolean detectCycle(Node head) {
+			Node fast=head;
+			Node slow=head;
+			while(fast!=null && fast.next!=null ) {
+				slow=slow.next;
+				fast=fast.next.next;
+				if(fast==slow) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		//Find the length of the cycle present in Linked list
+		//concept is that when fast==slow then we keep fast as it is , we move slow by one position 
+		//and will keep moving slow untill it again become equal to fast and will keep incrementing the 
+		//count variable that will give me length of the cycle
+		public static int findLengthOfCycle(Node head) {
+			Node fast=head;
+			Node slow=head;
+			while(fast!=null && fast.next!=null) {
+				slow=slow.next;
+				fast=fast.next.next;
+				if(fast==slow) {
+					int count=0;
+					do{
+						slow=slow.next;
+						count++;
+					}
+					while(slow!=fast);
+					return count;
+				}
+			}
+			return 0;
+		}
+		
+		//Return start point of the cycle in LL
+		
+		
+		
+		
+		
+		
+//		A happy number is a number defined by the following process:
+//
+//			Starting with any positive integer, replace the number by the sum of the squares of its digits.
+//			Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a 
+//			cycle which does not include 1.
+//			Those numbers for which this process ends in 1 are happy.
+//			Return true if n is a happy number, and false if not.
+// 
+//			Example 1:
+//
+//			Input: n = 19
+//			Output: true
+//			Explanation:
+//			12 + 92 = 82
+//			82 + 22 = 68
+//			62 + 82 = 100
+//			12 + 02 + 02 = 1
+//			Example 2:
+//
+//			Input: n = 2
+//			Output: false
+		
+		//Happy Number problem
+		 public boolean isHappy(int n) {
+		        int slow=n;
+		        int fast=n;
+		        do {
+		        	slow=squareOfNumber(slow);//moving one times
+		        	fast=squareOfNumber(squareOfNumber(fast));//moving two times
+		        }while(slow!=fast);
+		        if(slow==1) {
+		        	return true;
+		        }
+		        return false;
+		    }
+		 
+		 private int squareOfNumber(int num) {
+			 int rem=0;
+			 int sum=0;
+			 while(num!=0) {
+				 rem=num%10;
+				 sum+=rem*rem;
+				 num=num/10;
+				 
+			 }
+			 return sum;
+		 }
+		
 
 	public static void main(String[] args) {
 //		LinkedList list=new LinkedList();
@@ -427,6 +520,8 @@ public class LinkedList {
 		System.out.println("List after merging");
 		LinkedList list1=merge(ll1, ll2);
 		list1.display();
+		
+		
 		
 		
 		
