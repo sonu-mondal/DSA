@@ -9,6 +9,14 @@ public class Node {
 	}
 	
 	
+	
+	public Node() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public Node(int data, Node next) {
 		super();
 		this.data = data;

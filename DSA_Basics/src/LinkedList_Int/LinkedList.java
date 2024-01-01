@@ -274,34 +274,35 @@ public class LinkedList {
 			}
 		}
 		
-		//Merging two LL
-		public static LinkedList merge(LinkedList l1, LinkedList l2) {
-			Node f=l1.getHead();
-			Node s=l2.getHead();
-			
-			LinkedList list=new LinkedList();
-			LinkedList tail=list;
-			
-			while(f!=null && s!=null) {
-				if(f.getData()<s.getData()) {
-					list.addAtEnd(f.getData());
-					f=f.getNext();
+//Merging two LL
+//we will compare the head of both list data whichever is less we will add it to our newly list
+//how we will add: so we created tail which points to dummyHead so whichever list value is less
+// we make tails next point to that node and then move list by 1 position and tail by one position
+// at end suppose 2 list have unequal length so the left elements which is already in sorted we will 
+// add to our list by making tails next point to that node
+		public static LinkedList merge(Node list1, Node list2) {
+			LinkedList dummyHead=new LinkedList();
+			Node tail=dummyHead.head;
+			while(list1!=null && list2!=null) {
+				if(list1.getData()<list2.getData()) {
+					tail.setNext(list1);
+					list1=list1.getNext();
+					tail=tail.getNext();
 				}
 				else {
-					list.addAtEnd(s.getData());
-					s=s.getNext();
-				}				
+					tail.setNext(list2);
+					list2=list2.getNext();
+					tail=tail.getNext();
+				}
 			}
-			while(f!=null) {
-				list.addAtEnd(f.getData());
-				f=f.getNext();
+			if(list1!=null) {
+				tail.setNext(list1);
 			}
-			while(s!=null) {
-				list.addAtEnd(s.getData());
-				s=s.getNext();
+			else {
+				tail.setNext(list2);
 			}
+			return dummyHead;
 			
-			return list;
 		}
 		
 		//Detect cycle in linked list
@@ -514,12 +515,15 @@ public class LinkedList {
 		ll2.addAtEnd(18);
 		ll2.addAtEnd(100);
 		
+		System.out.println();
+		System.out.println("List1");
 		ll1.display();
 		System.out.println();
+		System.out.println("List2");
 		ll2.display();
 		System.out.println("List after merging");
-		LinkedList list1=merge(ll1, ll2);
-		list1.display();
+		LinkedList list1=merge(ll1.head, ll2.head);
+		//list1.display();
 		
 		
 		
