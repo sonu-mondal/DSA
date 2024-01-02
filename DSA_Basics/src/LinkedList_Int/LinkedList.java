@@ -225,6 +225,7 @@ public class LinkedList {
 		}
 		
 		//or 2nd method to delete at particular index element 
+		
 		public int deleteAtIndex1(int index) {
 			if(index==0) {
 				return deleteFirst();
