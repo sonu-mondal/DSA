@@ -241,6 +241,63 @@ public class LinkedList {
 			
 		}
 		
+		//Deleting element when value is given ...............................
+		
+		public int deleteWithValue(Node head, int val) {
+			//if val is head
+			if(this.head==null) {
+				this.tail=null;
+			}
+			if(this.head.getData()==val) {
+				Node temp=this.head;
+				head=head.getNext();
+				return temp.getData();
+			}
+			
+			//if value is tail
+			if(this.head==null) {
+				this.tail=null;
+			}
+			Node previous=this.head;
+			while(previous.getNext().getNext()!=null) {
+				previous=previous.getNext();
+				
+			}
+			if(this.tail.getData()==val) {
+				Node temp1=tail;
+				previous.setNext(null);
+				tail=previous;
+				return temp1.getData();
+			}
+			
+			//if value is in mid
+			if(this.head==null) {
+				this.tail=null;
+			}
+			Node temp2=this.head;
+			int index=0;
+			Node prev=temp2;
+			while(temp2!=null) {
+				if(temp2.getData()!=val) {
+					index++;
+					temp2=temp2.getNext();
+				}
+				else {
+					return -1;
+				}
+			}
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
 		//inserting element using recusrion
 		public void insertUsingRecursion(int data, int index) {
 			//head=... because we need to update the head if ant element is inserted at 0th position 
