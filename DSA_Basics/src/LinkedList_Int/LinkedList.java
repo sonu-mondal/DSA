@@ -243,52 +243,21 @@ public class LinkedList {
 		
 		//Deleting element when value is given ...............................
 		
-		public int deleteWithValue(Node head, int val) {
-			//if val is head
-			if(this.head==null) {
-				this.tail=null;
-			}
-			if(this.head.getData()==val) {
-				Node temp=this.head;
-				head=head.getNext();
-				return temp.getData();
-			}
+		public Node deleteWithValue(Node head, int val) {
+			Node dummyhead=new Node(0);
+			dummyhead.setNext(head);
+			Node current=dummyhead;
 			
-			//if value is tail
-			if(this.head==null) {
-				this.tail=null;
-			}
-			Node previous=this.head;
-			while(previous.getNext().getNext()!=null) {
-				previous=previous.getNext();
-				
-			}
-			if(this.tail.getData()==val) {
-				Node temp1=tail;
-				previous.setNext(null);
-				tail=previous;
-				return temp1.getData();
-			}
-			
-			//if value is in mid
-			if(this.head==null) {
-				this.tail=null;
-			}
-			Node temp2=this.head;
-			int index=0;
-			Node prev=temp2;
-			while(temp2!=null) {
-				if(temp2.getData()!=val) {
-					index++;
-					temp2=temp2.getNext();
+			while(current.next!=null) {
+				if(current.getNext().getData()==val) {
+					current.setNext(current.getNext().getNext());	
 				}
 				else {
-					return -1;
+					current=current.getNext();
 				}
 			}
 			
-			
-			
+			return dummyhead.getNext();
 			
 		}
 		
@@ -562,28 +531,41 @@ public class LinkedList {
 		
 		
 		//Merging two sorted linked list
-		LinkedList ll1=new LinkedList();
-		LinkedList ll2=new LinkedList();
-		ll1.addAtEnd(1);
-		ll1.addAtEnd(4);
-		ll1.addAtEnd(10);
-
-		ll2.addAtEnd(3);
-		ll2.addAtEnd(8);
-		ll2.addAtEnd(18);
-		ll2.addAtEnd(100);
-		
-		System.out.println();
-		System.out.println("List1");
-		ll1.display();
-		System.out.println();
-		System.out.println("List2");
-		ll2.display();
-		System.out.println("List after merging");
-		LinkedList list1=merge(ll1.head, ll2.head);
+//		LinkedList ll1=new LinkedList();
+//		LinkedList ll2=new LinkedList();
+//		ll1.addAtEnd(1);
+//		ll1.addAtEnd(4);
+//		ll1.addAtEnd(10);
+//
+//		ll2.addAtEnd(3);
+//		ll2.addAtEnd(8);
+//		ll2.addAtEnd(18);
+//		ll2.addAtEnd(100);
+//		
+//		System.out.println();
+//		System.out.println("List1");
+//		ll1.display();
+//		System.out.println();
+//		System.out.println("List2");
+//		ll2.display();
+//		System.out.println("List after merging");
+//		LinkedList list1=merge(ll1.head, ll2.head);
 		//list1.display();
 		
-		
+		//delete when value is given
+		LinkedList ll3=new LinkedList();
+		ll3.addAtEnd(1);
+		ll3.addAtEnd(4);
+		ll3.addAtEnd(10);
+		ll3.addAtEnd(123);
+		ll3.addAtEnd(47);
+		ll3.addAtEnd(19);
+		System.out.println();
+		System.out.println("before deleting ");
+		ll3.display();
+		System.out.println("after deleting");
+		ll3.deleteWithValue(ll3.getHead(), 1);
+		ll3.display();
 		
 		
 		
