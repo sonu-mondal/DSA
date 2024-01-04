@@ -261,6 +261,19 @@ public class LinkedList {
 			
 		}
 		
+		//reverse ll
+		public Node reverseLinkedList(Node head) {
+			Node current=this.head;
+			Node previous=null;
+			Node nxt=null;
+			while(current!=null) {
+				nxt=current.getNext();
+				current.next=previous;
+				previous=current;
+				current=nxt;
+			}
+			return previous;
+		}
 		
 		
 		
@@ -560,14 +573,19 @@ public class LinkedList {
 		ll3.addAtEnd(123);
 		ll3.addAtEnd(47);
 		ll3.addAtEnd(19);
+//		System.out.println();
+//		System.out.println("before deleting ");
+//		ll3.display();
+//		System.out.println("after deleting");
+//		ll3.deleteWithValue(ll3.getHead(), 1);
+//		ll3.display();
+		
+		System.out.println("Before reversing");
+		ll3.display();
 		System.out.println();
-		System.out.println("before deleting ");
+		System.out.println("After reversing");
+		ll3.reverseLinkedList(ll3.head);
 		ll3.display();
-		System.out.println("after deleting");
-		ll3.deleteWithValue(ll3.getHead(), 1);
-		ll3.display();
-		
-		
 		
 		
 		
