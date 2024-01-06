@@ -275,7 +275,37 @@ public class LinkedList {
 			return previous;
 		}
 		
+		//Reverse only a part of linked list 
+		public Node reverseBetween(Node head, int left, int right) {
+			Node dummy=new Node(0);
+			dummy.next=head;
+			
+			Node previous=dummy;
+			Node current=head;
+			for(int i=0;i<left-1;i++) {
+				previous=previous.next;
+				current=current.next;
+			}
+			
+			Node currentFixed=current;
+			
+			Node previousNull=null;
+			for(int j=0;j<=right-left;j++) {
+				Node next=current.next;
+				current.next=previousNull;
+				previousNull=current;
+				current=next;
+			}
+			
+			//noe making the before left and after left nodes connection
+			previous.next=previousNull;
+			currentFixed.next=current;
+			
+			
+			return dummy.next;
+		}
 		
+			
 		
 		
 		
