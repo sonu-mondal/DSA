@@ -477,6 +477,54 @@ public class LinkedList {
 			 }
 			 return slow;
 		 }
+		 
+		 //https://leetcode.com/problems/reorder-list/
+		 //Reorder list
+		 //concept is: if we take two pinter one at first and one at last node and keep adding in sequence
+		 //first-last then increment first and decrement last but here we can go back node
+//so concept is we find mid element and from mid to last we reverse the list
+		 
+		 public void reorderList(Node head) {
+			 Node first=head;//
+			 Node slow=head;
+			 Node fast=head;
+			 int length=0;
+			 Node dummy=new Node(0);
+			 Node previous=dummy;//to store node element before the mid node
+			 //finding mid element
+			 while(head!=null && head.next!=null) {
+				 length++;
+				 slow=slow.next;
+				 previous=previous.next;
+				 fast=fast.next.next;//fast now reach to last element
+			 }
+			 
+			 //reversing from mid to last/fast node
+			 //slow is current element
+			 Node pre=null;
+			 while(slow!=null) {
+				 Node next=slow.next;
+				 slow.next=pre;
+				 pre=slow;
+				 slow=next;
+			 }
+			 //make connection between previous and last & last is fast here
+			 previous.next=fast;
+			 
+			 //now one by one putting elements/arranging elements as asked in problem
+			 while(length!=0) {
+				 Node afterfirst=first.next;
+				 Node afterfast=fast.next;
+				 first.next=fast;
+				 first=first.next;
+				 fast=fast.next;
+				 length--;
+			 }
+			 
+			 
+		 }
+		 
+		 
 		
 
 	public static void main(String[] args) {
