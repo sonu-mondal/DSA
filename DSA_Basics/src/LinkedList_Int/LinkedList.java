@@ -544,6 +544,29 @@ public class LinkedList {
 		        return head;
 		        
 		    }
+		 
+		 //reversing a linked list using RECURION***
+//CONCEPT: is we if node is tail we make it head else we keep calling the function with node.next untill
+//we reach the tail and once we reach the tail we make tails next as node and then tail as node and then tail.next as null
+		 public void reverseUsingRecursion(Node node) {
+			 if(node==tail) {
+				 tail=head;
+				 return;
+			 }
+			 reverseUsingRecursion(node.next);
+			 
+			 //
+			 tail.next=node;
+		     tail=node;
+			 tail.next=null;
+			 
+		 }
+		 
+		 
+		 
+		 
+		 
+		 
 
 		public static void main(String[] args) {
 //		LinkedList list=new LinkedList();
