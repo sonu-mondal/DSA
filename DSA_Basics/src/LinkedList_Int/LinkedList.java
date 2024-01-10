@@ -562,7 +562,23 @@ public class LinkedList {
 			 
 		 }
 		 
+		 //reverse nodes in k groups
+		 //https://leetcode.com/problems/reverse-nodes-in-k-group/
+//		  public Node reverseKGroup(Node head, int k) {
+//		        if(k<=1 || head==null) {
+//		        	return head;
+//		        }
+//		        
+//		    }
 		 
+		 
+		 
+		 
+		 
+		 //rotate list k times
+//		 public Node rotateRight(Node head, int k) {
+//			 
+//		 }
 		 
 		 
 		 
