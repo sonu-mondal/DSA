@@ -582,6 +582,31 @@ public class LinkedList {
 		 
 		 
 		 
+		 //Remove nth node from end
+		 public Node removeNthFromEnd(Node head, int n) {
+		        if(head==null || head.next==null){
+		            return null;
+		        }
+		       
+		        Node temp=new Node(0);
+		        temp.next=head;
+		        Node nextElement=temp;
+		        Node previous=temp;
+		        for(int i=0;i<n;i++){
+		            nextElement=nextElement.next;
+		        }
+		        while(nextElement.next!=null){
+		            nextElement=nextElement.next;
+		            previous=previous.next;
+		            
+		        }
+		        previous.next=previous.next.next;
+		        return temp.next;
+		 }
+
+
+
+		 
 		 
 
 		public static void main(String[] args) {
