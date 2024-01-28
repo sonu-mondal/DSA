@@ -1,6 +1,8 @@
 package STACK;
 
+import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class QueueUsing_Stack {
 	Stack<Integer> first;
@@ -42,7 +44,11 @@ public class QueueUsing_Stack {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	Queue<Integer> queue=new ConcurrentLinkedQueue<>();
+	queue.add(1);
+	queue.add(3);
+	queue.add(3);
+	
 
 	}
 
