@@ -20,6 +20,7 @@ public class minAddToMakeValidParenthesis {
 		}
 		return stack.size();
 	}
+	
 
 	public static void main(String[] args) {
 		
