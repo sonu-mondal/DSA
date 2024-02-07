@@ -19,6 +19,6 @@ public class first {
 }
 
 
-//  o/p:
+//  o/p :
 //compilation problem: 
 //	Type mismatch: cannot convert from int to String
