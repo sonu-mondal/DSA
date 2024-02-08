@@ -24,6 +24,7 @@ public class minAddToMakeValidParenthesis {
 
 	public static void main(String[] args) {
 		Stack<Character> stack=new Stack<>();
+		stack.push('(');
 
 	}
 
