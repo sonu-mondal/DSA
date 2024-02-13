@@ -42,6 +42,7 @@ public class NextGreaterElement_I {
 			System.out.print(ans[i]+" ");
 		}
 		
+		
 
 	}
 
